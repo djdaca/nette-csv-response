@@ -233,7 +233,7 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 							);
 						}
 						if ($recode) {
-							$label = iconv(
+							$label = @iconv(
 								'utf-8', "$this->outputCharset//TRANSLIT",
 								$label
 							);
@@ -248,7 +248,7 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 						$value = call_user_func($this->dataFormatter, $value);
 					}
 					if ($recode) {
-						$value = iconv(
+						$value = @iconv(
 							'utf-8', "$this->outputCharset//TRANSLIT", $value
 						);
 					}
