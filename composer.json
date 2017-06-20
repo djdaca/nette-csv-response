@@ -1,8 +1,8 @@
 {
-    "name": "ohweb/nette-csv-response",
+    "name": "djdaca/nette-csv-response",
     "type": "library",
     "description": "Nette CSV response",
-    "homepage": "https://github.com/ohweb/nette-csv-response",
+    "homepage": "https://github.com/djdaca/nette-csv-response",
     "license": "New BSD",
     "authors": [
         {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OHWeb\\Application\\Responses\\": "src/"
+            "DJDaca\\Application\\Responses\\": "src/"
         }
     }
 }
