@@ -1,6 +1,6 @@
 <?php
 
-namespace OHWeb\Application\Responses;
+namespace DJDaca\Application\Responses;
 
 use Nette;
 
