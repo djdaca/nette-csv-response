@@ -10,55 +10,38 @@ use Nette;
  *
  * @package OHWeb\Application\Responses
  */
-class CsvResponse extends Nette\Object implements Nette\Application\IResponse
+class CsvResponse implements Nette\Application\IResponse
 {
+	use Nette\SmartObject;
+	
 	/** standard glues */
 	const COMMA = ',',
 		SEMICOLON = ';',
 		TAB = ' ';
-
-
-
 	/** @var bool */
 	protected $addHeading;
-
-
-
+	
 	/** @var string */
 	protected $glue = self::COMMA;
-
-
-
+	
 	/** @var string */
 	protected $outputCharset = 'utf-8';
-
-
-
+	
 	/** @var string */
 	protected $contentType = 'text/csv';
-
-
-
+	
 	/** @var callable */
 	protected $headingFormatter = 'self::firstUpperNoUnderscoresFormatter';
-
-
-
+	
 	/** @var callable */
 	protected $dataFormatter;
-
-
-
+	
 	/** @var array */
 	protected $data;
-
-
-
+	
 	/** @var string */
 	protected $filename;
-
-
-
+	
 	/**
 	 * In accordance with Nette Framework accepts only UTF-8 input. For output @see setOutputCharset().
 	 *
@@ -81,9 +64,7 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		$this->filename = $filename;
 		$this->addHeading = $addHeading;
 	}
-
-
-
+	
 	/**
 	 * Value separator.
 	 *
@@ -101,9 +82,7 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		$this->glue = $glue;
 		return $this;
 	}
-
-
-
+	
 	/**
 	 * @param string $charset
 	 *
@@ -114,8 +93,6 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		return $this;
 	}
 
-
-
 	/**
 	 * @param string $contentType
 	 *
@@ -125,8 +102,6 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		$this->contentType = $contentType;
 		return $this;
 	}
-
-
 
 	/**
 	 * When heading added, it is formatted by given callback.
@@ -147,8 +122,6 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		return $this;
 	}
 
-
-
 	/**
 	 * If given, every value is formatted by given callback.
 	 *
@@ -167,8 +140,6 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		return $this;
 	}
 
-
-
 	/**
 	 * @param string $heading
 	 *
@@ -181,8 +152,6 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 			);
 		return $heading;
 	}
-
-
 
 	/**
 	 * Sends response to output.
@@ -201,9 +170,7 @@ class CsvResponse extends Nette\Object implements Nette\Application\IResponse
 		$httpResponse->setHeader('Content-Length', strlen($data));
 		print $data;
 	}
-
-
-
+	
 	protected function formatCsv() {
 		if (empty($this->data)) {
 			return '';
